@@ -1,0 +1,10 @@
+{
+    "nombre": "Franco Tomas Gimenes",
+    "edad": 20,
+    "carrera": "Tec. Programacion",
+    "cursos": [
+        "Taller de lenguajes de marcado y tecnologias web",
+        "Organizacion de computadoras 1",
+        "Nuevos entornos"
+    ]
+}

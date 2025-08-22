@@ -1,0 +1,28 @@
+{
+    "catalogo":{
+        "ciencia-ficcion":{
+            "0":{
+                "titulo": "El encuentro de María",
+                "director": "Carlos Alberrasini",
+                "sinopsis": "Al final de su cursada, Maria se encuentra con una oportunidad laboral que camiara su vida para siempre. Ella se transforma en una agente multiuniversal capaz de detectar crimenes en todos los universos."
+            },
+            "1":{
+                "titulo": "Las 12 lunas",
+                "director": "Matias Herrera",
+                "sinopsis": "Despues de que un satelite detectara 12 lunas permanentemente en linea recta unas al lado de otras, ocultas detras de el sol, Descubre que estas no pareces ser naturales."
+            }
+        },
+        "accion":{
+            "0":{
+                "titulo": "La pistola",
+                "director": "Francisco Empiletic",
+                "sinopsis": "Un 9mm toma vida por si solo y empieza a tirotiear a todo lo que se cruze en su camino, policias y militares intentan detenerla."
+            },
+            "1":{
+                "titulo":"Jose Wick",
+                "director": "Alfredo Guñites",
+                "sinopsis": "Un asesino a sueldo retirado, decide volver a las andadas despues de que asesinaren a su pez tom. No parara hasta ver a todos muertos."
+            }
+        }
+    }
+}

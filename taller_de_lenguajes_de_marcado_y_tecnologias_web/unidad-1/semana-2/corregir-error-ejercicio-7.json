@@ -1,0 +1,9 @@
+{
+    "nombre": "María López",
+    "edad": 22,
+    "carrera": "Administración de Empresas",
+    "cursos": [
+        "Economía",
+        "Contabilidad"
+    ]
+}

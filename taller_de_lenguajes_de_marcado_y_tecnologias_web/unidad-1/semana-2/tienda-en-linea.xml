@@ -1,0 +1,45 @@
+<!--
+Ejercicio 4.
+    Crea un documento XML que represente la información de una tienda en línea, incluyendo
+    categorías de productos, nombres de productos, precios y descripciones. La tienda debe
+    tener al menos dos categorías y varios productos en ellas.
+-->
+
+<tienda>
+    <productos>
+        <electronica>
+            <producto id="0">
+                <nombre>PC gamer full jueguitos</nombre>
+                <descripcion>32Gb de ram, SSD de 2Tb, Ryzen 7</descripcion>
+                <precio>$40000</precio>
+            </producto>
+            <producto id="1">
+                <nombre>Mouse gamer Logitech</nombre>
+                <descripcion>Perfecto para jugar, con botones laterales y luces leds</descripcion>
+                <precio>$600</precio>
+            </producto>
+            <producto id="2">
+                <nombre>Monitor Asus de 22 pulgadas</nombre>
+                <descripcion>100Hz para pegar cabezasos en el CS</descripcion>
+                <precio>$2300</precio>
+            </producto>
+        </electronica>
+        <herramientas>
+            <producto id="0">
+                <nombre>Pala Ancha Cabo De Madera Acero Forjado Gherardi</nombre>
+                <descripcion>Una sola pieza de acero forjado, templado y revenido</descripcion>
+                <precio>$3200</precio>
+            </producto>
+            <producto id="1">
+                <nombre>Amoladora Angular 115mm 750w 11000rpm</nombre>
+                <descripcion>La amoladora Orebro es una herramienta versátil, que permite realizar diferentes trabajos con una terminación profesional.</descripcion>
+                <precio>$4000</precio>
+            </producto>
+            <producto id="2">
+                <nombre>Pistola Pintar Gravedad 600cc Wadfow WGA1504</nombre>
+                <descripcion>Sin Enchufe Rápido, Boquilla Opcional: 1.2-1.8 mm</descripcion>
+                <precio>$1200</precio>
+            </producto>
+        </herramientas>
+    </productos>
+</tienda>

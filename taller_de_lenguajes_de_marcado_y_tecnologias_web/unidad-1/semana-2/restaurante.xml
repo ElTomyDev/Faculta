@@ -6,5 +6,63 @@ Ejercicio 2.
 -->
 
 <restaurante>
-    
+    <menu>
+        <entradas>
+            <alimento id="0">
+                <nombre>Queso con Champinones</nombre>
+                <detalles></detalles>
+                <precio>$90</precio>
+            </alimento>
+            <alimento id="1">
+                <nombre>Choriqueso</nombre>
+                <detalles>Chori con queso cremoso y/o cheddar</detalles>
+                <precio>$95</precio>
+            </alimento>
+        </entradas>
+        
+        <platos-principales>
+            <alimento id="0">
+                <nombre>Salmon en Pipian Verde</nombre>
+                <detalles>A la parri, servido con risotto de hongos y fruto secos</detalles>
+                <precio>$219</precio>
+            </alimento>
+            <alimento id="1">
+                <nombre>Costilla de cordero a la parrilla</nombre>
+                <detalles>En salsa de cerveza y chile pasilla, con pura de papas y verduritas</detalles>
+                <precio>$397</precio>
+            </alimento>
+        </platos-principales>
+
+        <postres>
+            <alimento id="0">
+                <nombre>Flan de la casa</nombre>
+                <detalles>Sabor vainilla con dulce de leche</detalles>
+                <precio>$120</precio>
+            </alimento>
+            <alimento id="1">
+                <nombre>Panqueques con dulce de leche</nombre>
+                <detalles>Se puede reemplazar el dulce de leche por crema americana</detalles>
+                <precio>$195</precio>
+            </alimento>
+        </postres>
+
+        <bebidas>
+            <alimento id="0">
+                <nombre>Tsunami alcolico</nombre>
+                <detalles>mescla de frutas liquadas con ron</detalles>
+                <precio>$100</precio>
+            </alimento>
+            <alimento id="1">
+                <nombre>Jugo de naranja</nombre>
+                <detalles></detalles>
+                <precio>$54</precio>
+            </alimento>
+            <alimento id="2">
+                <nombre>Cerveza miel</nombre>
+                <detalles>Cerveza artesanal</detalles>
+                <precio>$138</precio>
+            </alimento>
+        </bebidas>
+
+    </menu>
 </restaurante>

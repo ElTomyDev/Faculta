@@ -1,0 +1,24 @@
+<!--
+Ejercicio 3.
+    Encuentra y corrige el error en el siguiente fragmento XML que representa la información de
+    un estudiante:
+    <estudiante>
+        <nombre>Pablo Rodriguez</nombre>
+        <edad>21</edad>
+        <carrera>Ingeniería en Informática</carrera>
+        <cursos>
+            <curso>Matemáticas</curso>
+            <curso>Física</curso>
+        </estudiante>
+    </cursos>
+-->
+
+<estudiante>
+    <nombre>Pablo Rodriguez</nombre>
+    <edad>21</edad>
+    <carrera>Ingeniería en Informática</carrera>
+    <cursos>
+        <curso>Matemáticas</curso>
+        <curso>Física</curso>
+    </cursos>
+</estudiante> <!-- Estaba mal el cierre del tag </estudiantes> y </cursos> -->

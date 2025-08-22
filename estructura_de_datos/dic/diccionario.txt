@@ -1,0 +1,106 @@
+import copy as cp
+
+class Diccionario:
+  #######TDA tupla clave-significado#########################
+    class __TuplaDic:
+        def __init__(self, key, value):
+            self.__data = (key,value)
+
+        def __repr__(self):
+            return str(self.__data)
+
+        def __eq__(self, key): # sobrecargar el numerador "==", compara las key y no los value.
+            return self.__data[0] == key
+
+        def __hash__(self): # metodo necesario para asociar claves con valores
+            return hash(self.__data[0])
+
+        def getKey(self): # devuelve la key
+            return self.__data[0]
+
+        def getValue(self): # devuelve el valor
+            return self.__data[1]
+  ############################################################
+
+    ###Constructor recibe dos listas de claves y significados en orden
+    def __init__(self, keys = None, values = None):
+        self.__diccionario = set()
+        if keys != None:
+            if len(keys) == len(values):
+                for i in range(len(keys)):
+                    self[keys[i]] = values[i]
+            else:
+                raise Exception("Las listas de pares clave-significado deben tener la misma cantidad")
+
+    def __repr__(self):
+        return str(self.__diccionario)
+
+    ###Asignacion usando [], se recibe clave entre corchetes / Permite reemplazar aunque exista la clave
+    def __setitem__(self, key = None, value = None):
+        if key != None:
+            if key in self:
+                self.__diccionario.remove(key)
+        self.__diccionario.add(Diccionario.__TuplaDic(key,value))
+
+    ###No inserta si existe la clave, es decir, si la clave existe en el dicc no modifica el valor
+    def insert(self, key = None, value = None):
+        if key != None:
+            self.__diccionario.add(Diccionario.__TuplaDic(key,value))
+
+  ###Elimina si existe la clave, es decir, si la clave existe en el dicc elimina el par clave-valor
+  ###Sino existe la clave, no hace nada
+    def remove(self, key):
+        if key in self:
+            valor = self[key]
+            self.__diccionario.remove(key)
+            return valor
+
+    ###Vacia dicc
+    def clear(self):
+        self.__diccionario = set()
+
+    ###Clonar dicc
+    def clone(self):
+        return cp.deepcopy(self)
+
+    ###Acceso a valores usando [], se recibe clave entre corchetes
+    def __getitem__(self, key):
+        value = None
+        flag = False
+        for tuplaDic in self.__diccionario:
+            if tuplaDic.getKey() == key:
+                value = tuplaDic.getValue()
+                flag = True
+        if flag:
+            return value
+        else:
+            raise Exception("No existe la clave %s en el diccionario" % (key))
+
+    ###Retorna valor de la clave que se recibe por parametro
+    def get(self, key):
+        value = None
+        flag = False
+        for tuplaDic in self.__diccionario:
+            if tuplaDic.getKey() == key:
+                value = tuplaDic.getValue()
+                flag = True
+        if flag:
+            return value
+        else:
+            raise Exception("No existe la clave %s en el diccionario" % (key))
+
+    ###Retorna lista con claves
+    def keys(self):
+        return [x.getKey() for x in self.__diccionario]
+
+    ###Retorna lista con valores
+    def values(self):
+        return [x.getValue() for x in self.__diccionario]
+
+    ###Operador "in"
+    def __contains__(self, key):
+        return key in self.__diccionario
+
+    ###Tamaño de diccionario
+    def len(self):
+        return len(self.__diccionario)

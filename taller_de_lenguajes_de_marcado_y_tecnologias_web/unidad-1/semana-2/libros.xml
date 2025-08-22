@@ -1,0 +1,22 @@
+<!--
+Ejercicio 1.
+    Crea un archivo XML que represente la información de un libro con los siguientes datos:
+    título, autor, año de publicación y género
+-->
+
+<biblioteca>
+    <catalogo tema="filosofia">
+        <libro id="0">
+            <titulo>¿Que significa todo esto?</titulo>
+            <autor>Thomas Nagel</autor>
+            <ano-de-publicado>1995</ano-de-publicado>
+            <genero>Filosofia</genero>
+        </libro>
+        <libro id="1">
+            <titulo>Diccionario de Filosofia Abreviado</titulo>
+            <autor>Jose Ferrater Mora</autor>
+            <ano-de-publicado>2007</ano-de-publicado>
+            <genero>Filosofia-Diccionario</genero>
+        </libro>
+    </catalogo>
+</biblioteca>

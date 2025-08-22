@@ -1,0 +1,10 @@
+<!-- 
+Ejercicio 2.
+    Crea un documento XML que represente la estructura de un menú de un restaurante. Debe
+    incluir secciones para entradas, platos principales, postres y bebidas, cada una con varios
+    elementos que representen los ítems del menú
+-->
+
+<restaurante>
+    
+</restaurante>

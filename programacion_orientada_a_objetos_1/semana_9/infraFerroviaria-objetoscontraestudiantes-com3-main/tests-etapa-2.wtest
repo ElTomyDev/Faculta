@@ -1,0 +1,51 @@
+import vagones.carga.*
+import vagones.dormitorio.*
+import vagones.pasajeros.*
+import depositos.*
+import locomotoras.*
+import formacion.*
+
+describe "Segunda Formacion" {
+    const vagonPasajeros = new VagonPasajeros(largo=10,ancho=4,tieneBanos=true,estaOrdenado=true)
+
+    const vagonPasajeros2 = new VagonPasajeros(largo=7,ancho=2,tieneBanos=false,estaOrdenado=false)
+      
+    const vagonCarga = new VagonDeCarga(cargaMaxIdeal=6800,maderasSueltas=5)
+      
+    const vagonDormitorio = new VagonDormitorio(cantCompartimientos=8,cantCamas=3)
+
+    const primeraFormacion = new Formacion(formacionVagones=[vagonPasajeros,vagonPasajeros2,vagonCarga,vagonDormitorio])
+
+    const vagonCarga2 = new VagonDeCarga(cargaMaxIdeal=8000,maderasSueltas=1)
+
+    const vagonDormitorio2 = new VagonDormitorio(cantCompartimientos=15,cantCamas=4)
+
+    const segundaFormacion = new Formacion(formacionVagones=[vagonCarga2,vagonDormitorio2])
+
+
+
+
+    const locomotora1 = new Locomotoras(peso=3000,fuerzaDeArrastre=20000,velocidadMaxima=500)
+    const locomotora2 = new Locomotoras(peso=5000,fuerzaDeArrastre=22000,velocidadMaxima=600)
+    test "con la primeraFormacion, sin hacerle mantenimiento, solo los vagones, y el peso maximo 29800"{
+        assert.equals(29800,primeraFormacion.pesoTotalDeVagones())
+    }
+
+
+    test "primera formacion le agregamos locomotora 1, esta se volvera eficiente, no podria moverse, y le faltan 12800 de empuje" {
+      primeraFormacion.agregarLocomotora(locomotora1)
+      assert.that(primeraFormacion.locomotorasEficientes())
+      assert.notThat(primeraFormacion.puedeMoverse())
+      assert.equals(12800,primeraFormacion.empujeFaltante())
+    }
+
+
+    test  "si ahora le agregamos locomotora2"{
+      primeraFormacion.agregarLocomotora(locomotora1)
+      primeraFormacion.agregarLocomotora(locomotora2)
+      assert.notThat(primeraFormacion.locomotorasEficientes())
+      assert.that(primeraFormacion.puedeMoverse())
+      assert.equals(0,primeraFormacion.empujeFaltante())
+    }
+
+}

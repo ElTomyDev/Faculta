@@ -1,0 +1,122 @@
+program {
+    DibujarRelojAnalógicoSimplificado()
+}
+
+procedure DibujarRelojAnalógicoSimplificado(){
+    DibujarLasDoce()
+    DibujarLasTres()
+    DibujarLasSeis()
+    DibujarLasNueve()
+}
+
+procedure DibujarLasDoce(){
+    AvanzarDosPasosAlNorte()
+    PonerDoceBolitasDeColorRojo()
+    AvanzarDosPasosAlSur()
+}
+
+procedure DibujarLasTres(){
+    AvanzarDosPasosAlEste()
+    PonerTresBolitasDeColorRojo()
+    AvanzarDosPasosAlOeste()
+}
+
+procedure DibujarLasSeis(){
+    AvanzarDosPasosAlSur()
+    PonerSeisBolitasDeColorRojo()
+    AvanzarDosPasosAlNorte()
+}
+
+procedure DibujarLasNueve(){
+    AvanzarDosPasosAlOeste()
+    PonerNueveBolitasDeColorRojo()
+    AvanzarDosPasosAlEste()
+}
+
+procedure PonerDoceBolitasDeColorRojo(){
+    Poner(Rojo)
+    Poner(Rojo)
+    Poner(Rojo)
+    Poner(Rojo)
+    Poner(Rojo)
+    Poner(Rojo)
+    Poner(Rojo)
+    Poner(Rojo)
+    Poner(Rojo)
+    Poner(Rojo)
+    Poner(Rojo)
+    Poner(Rojo)
+}
+
+procedure PonerTresBolitasDeColorRojo(){
+    Poner(Rojo)
+    Poner(Rojo)
+    Poner(Rojo)
+}
+
+procedure PonerSeisBolitasDeColorRojo(){
+    Poner(Rojo)
+    Poner(Rojo)
+    Poner(Rojo)
+    Poner(Rojo)
+    Poner(Rojo)
+    Poner(Rojo)
+}
+
+procedure PonerNueveBolitasDeColorRojo(){
+    Poner(Rojo)
+    Poner(Rojo)
+    Poner(Rojo)
+    Poner(Rojo)
+    Poner(Rojo)
+    Poner(Rojo)
+    Poner(Rojo)
+    Poner(Rojo)
+    Poner(Rojo)
+}
+
+procedure AvanzarDosPasosAlNorte(){
+    Mover(Norte)
+    Mover(Norte)
+}
+
+procedure AvanzarDosPasosAlEste(){
+    Mover(Este)
+    Mover(Este)
+}
+
+procedure AvanzarDosPasosAlSur(){
+    Mover(Sur)
+    Mover(Sur)
+}
+
+procedure AvanzarDosPasosAlOeste(){
+    Mover(Oeste)
+    Mover(Oeste)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

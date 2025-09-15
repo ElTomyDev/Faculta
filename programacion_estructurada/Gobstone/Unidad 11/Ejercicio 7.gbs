@@ -1,0 +1,22 @@
+program{
+    return(aparicionesDeColor_(Negro))
+}
+
+# Ejercicio 7
+
+function aparicionesDeColor_(color){
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Norte, Oeste)
+    cantidadDeColor := nroBolitas(color)
+    
+    
+    listaDeCantidadDeColores := []
+    while (haySiguienteCeldaEnUnRecorridoAl_Y_(Norte, Oeste)){
+        listaDeCantidadDeColores := listaDeCantidadDeColores ++ [cantidadDeColor]
+        
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Oeste, Norte)
+        cantidadDeColor := nroBolitas(color)
+    }
+    listaDeCantidadDeColores := listaDeCantidadDeColores ++ [cantidadDeColor]
+    
+    return(listaDeCantidadDeColores)
+}

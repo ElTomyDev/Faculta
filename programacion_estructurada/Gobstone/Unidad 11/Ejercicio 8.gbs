@@ -1,0 +1,29 @@
+program{
+    return(direccionesAlBorde())
+}
+
+# Ejercicio 8
+
+function direccionesAlBorde(){
+    
+    direccionActual := minDir()
+    noPuedeMoverLista := []
+    
+    while (direccionActual /= maxDir()){
+        noPuedeMoverLista := noPuedeMoverLista ++ noSePuedeMoverHacia_(direccionActual)
+        direccionActual := siguiente(direccionActual)
+        
+    }
+    noPuedeMoverLista := noPuedeMoverLista ++ noSePuedeMoverHacia_(direccionActual)
+    return(noPuedeMoverLista)
+}
+
+function noSePuedeMoverHacia_(direccion){
+    lista := []
+    
+    if (not puedeMover(direccion)){
+        lista := [direccion]
+    }
+    
+    return(lista)
+}

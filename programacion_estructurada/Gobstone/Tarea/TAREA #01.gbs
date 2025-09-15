@@ -1,0 +1,263 @@
+program {
+    ReponerFichasAlNorte()
+}
+
+# Ejercicio 3
+procedure ReponerFichasAlNorte(){
+    if (esCeldaSinFichas() && hayDosCeldasSinFichasAlNorte()){
+        repeat(3){
+            PonerFichaAleatoria()
+            Mover(Norte)
+        }
+    }
+}
+
+//////////////////////////////////////////////////////////
+
+# Ejercicio 2
+procedure QuemarSucesionDe3RombosAlNorte(){
+    /*
+        PROPOSITO: Elimina una sucesion de tres rombos
+                   que estan tanto en la celda actual, como
+                   en la celda lindante al Norte y en la celda
+                   dos lugares al Norte de la actual.
+        PRECONDICION: Ninguna.
+    */
+    if (hayRomboAca() && haySucesionDe2RombosAlNorte()){
+        repeat (3){
+            EliminarFicha()
+            Mover(Norte)
+        }
+    }
+    
+}
+
+function haySucesionDe2RombosAlNorte(){
+    /*
+        PROPOSITO: Indica si hay una sucesion de 2 rombos
+                   en dos celdas al norte de la actual.
+        PRECONDICION: Tiene que haber por lo menos dos celdas
+                      al norte de la actual.
+    */
+    Mover(Norte)
+    return(hayRomboAca() && hayFicha_Al_(rombo(), Norte)) 
+}
+
+//////////////////////////////////////////////////////////
+
+# Ejercicio 1
+procedure IntercambiarEstrellaPorCirculoAlEste(){
+    /*
+        PROPOSITO: Intercambia el numero de bolitas que hay
+                   en la celda actual por el numero de bolitas
+                   que hay en la celda lindante al Este dejando
+                   ambas celdas intercambiadas.
+        PRECONDICION: Tiene que haber una celda al este de la
+                      celda actual.
+    */
+    if (hayEstrellaAca() && hayFicha_Al_(circulo(), Este)){
+        ReemplazarFichaPor_(circulo())
+        Mover(Este)
+        ReemplazarFichaPor_(estrella())
+        Mover(Oeste)
+    }
+    
+}
+
+procedure ReemplazarFichaPor_(figuraDeFicha){
+    /*
+        PROPOSITO: Reemplaza la ficha de la celda actual
+                   por otra *figuraDeFicha* indicada como
+                   parametro.
+        PRECONDICION: No tiene que haber una *figuraDeFicha* en la
+                      celda actual.
+        PARAMETROS: - figuraDeFicha: Numero. Ficha que se va a remplazar.
+    */
+    if(hayFicha() && not nroBolitas(Azul) == figuraDeFicha){
+        EliminarFicha()
+        repeat (figuraDeFicha){
+            Poner(Azul)
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////
+
+function esCeldaSinFichas(){
+    /*
+        PROPOSITO: Indica si la celda actual no hay ninguna ficha
+        PRECONDICION: Ninguna.
+    */
+    return(not hayFicha())
+}
+
+function hayDosCeldasSinFichasAlNorte(){
+    /*
+        PROPOSITO: Indica si hay dos celdas sin fichas al
+                   Norte de la actual.
+        PRECONDICION: Tiene que haber por lo menos dos celdas al
+                      norte de la celda actual.
+    */
+    Mover(Norte)
+    return(esCeldaSinFichas() && hayCeldaSinFichaAlNorte())
+}
+
+function hayCeldaSinFichaAlNorte(){
+    /*
+        PROPOSITO: Indica si hay una celda sin fichas en la
+                   celda lindante al norte de la celda actual.
+        PRECONDICION: Tiene que haber por lo menos una celda
+                      al norte de la actual.
+    */
+    Mover(Norte)
+    return(esCeldaSinFichas())
+}
+
+function hayFicha_Al_(tipoDeFicha, direccion){
+    /*
+        PROPOSITO: Indica si hay una ficha "tipoDeFicha" en la 
+                   celda lindante a *direccion* de la celda actual.
+        PRECONDICION: Tiene que haber una celda al *direccion* de
+                      la celda actual.
+        TIPO: Booleano.
+    */
+    Mover(direccion)
+    return(nroBolitas(Azul) == tipoDeFicha)
+}
+
+procedure EliminarFicha(){
+    /*
+        PROPOSITO: Elimina Todas las bolitas de color Azul
+                   que se encuentran en la celda actual.
+        PRECONDICION: Ninguna.
+    */
+    if (hayFicha()){
+        while (nroBolitas(Azul) > 0){
+            Sacar(Azul)
+        }
+    }
+}
+
+function hayCirculoAca(){
+    /*
+        PROPOSITO: Indica si en la celda actual se encuentran dos
+                   bolitas de color Azul.
+        OBSERVACION: Un circulo esta representado por dos
+                     bolitas azules.
+        PRECONDICION: Ninguna.
+        TIPO: Booleano.
+    */
+    
+    return (nroBolitas(Azul) == circulo())
+}
+
+function hayTrianguloAca(){
+    /*
+        PROPOSITO: Indica si en la celda actual se encuentran tres
+                   bolitas de color Azul.
+        OBSERVACION: Un triangulo esta representado por tres
+                     bolitas azules.
+        PRECONDICION: Ninguna.
+        TIPO: Booleano.
+    */
+    
+    return (nroBolitas(Azul) == triangulo())
+}
+
+function hayRomboAca(){
+    /*
+        PROPOSITO: Indica si en la celda actual se encuentran cuatro
+                   bolitas de color Azul.
+        OBSERVACION: Un rombo esta representado por cuatro
+                     bolitas azules.
+        PRECONDICION: Ninguna.
+        TIPO: Booleano.
+    */
+    
+    return (nroBolitas(Azul) == rombo())
+}
+
+function hayEstrellaAca(){
+    /*
+        PROPOSITO: Indica si en la celda actual se encuentran cinco
+                   bolitas de color Azul.
+        OBSERVACION: Una estrella esta representado por cinco
+                     bolitas azules.
+        PRECONDICION: Ninguna.
+        TIPO: Booleano.
+    */
+    
+    return (nroBolitas(Azul) == estrella())
+}
+
+function hayUnObstaculoAca(){
+    /*
+        PROPOSITO: Indica si en la celda actual se encuentran dos
+                   bolitas de color Negro.
+        OBSERVACION: Un obstaculo esta representado por dos
+                     bolitas negras.
+        PRECONDICION: Ninguna.
+        TIPO: Booleano.
+    */
+    
+    return (nroBolitas(Negro) == 2)
+
+}
+
+function hayFicha(){
+    /*
+        PROPOSITO: Indica si hay una bolita de color azul
+                   en la celda actual.
+        OBSERVACION: Todas las figuras estan representadas 
+                     con almenos dos bolitas de color azul.
+        PRECONDICION: Ninguna.
+    */
+    return (nroBolitas(Azul) >= 2)
+}
+
+function circulo(){
+    /*
+        PROPOSITO: Indica el numero de bolitas que repesenta un 
+                   circulo.
+        PRECONDICION: Ninguna.
+        TIPO: Numero.
+    */
+    return(2)
+}
+
+function triangulo(){
+    /*
+        PROPOSITO: Indica el numero de bolitas que repesenta un 
+                   triangulo.
+        PRECONDICION: Ninguna.
+        TIPO: Numero.
+    */
+    return(3)
+}
+
+function rombo(){
+    /*
+        PROPOSITO: Indica el numero de bolitas que repesenta un 
+                   rombo.
+        PRECONDICION: Ninguna.
+        TIPO: Numero.
+    */
+    return(4)
+}
+
+function estrella(){
+    /*
+        PROPOSITO: Indica el numero de bolitas que repesenta una
+                   estrella.
+        PRECONDICION: Ninguna.
+        TIPO: Numero.
+    */
+    return(5)
+}
+
+
+
+
+
+
+

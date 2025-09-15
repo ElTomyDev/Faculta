@@ -1,0 +1,17 @@
+program{
+    Mover3VecesAl_(Norte)
+}
+
+procedure Mover3VecesAl_(direccionAMover){
+    /*
+        PROPOSITO: Mueve el cabezal 3 veces hacia la direccion
+                   especificada.
+        PRECONDICION: Debe de haber por lo menos 3 celdas en
+                      la direccion a mover.
+        PARAMETROS:
+            - direccionAMover: Direccion. Direccion a la que se va a mover el cabezal.
+    */
+    repeat (3){
+        Mover(direccionAMover)
+    }
+}

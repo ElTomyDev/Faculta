@@ -1,0 +1,32 @@
+program{
+    return(listaDeColoresEnCeldasDelTablero())
+}
+
+# Ejercicio 6
+
+function listaDeColoresEnCeldasDelTablero(){
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Sur, Oeste)
+    colorActual := colorQueHayEnEstaCelda()
+    listaDeColores := []
+    while (haySiguienteCeldaEnUnRecorridoAl_Y_(Sur, Oeste)){
+        listaDeColores := listaDeColores ++ [colorActual]
+        
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Oeste, Sur)
+        colorActual := colorQueHayEnEstaCelda()
+    }
+    listaDeColores := listaDeColores ++ [colorActual]
+    
+    return(listaDeColores)
+}
+
+
+function colorQueHayEnEstaCelda(){
+    return(
+        choose
+            Azul when (hayBolitas(Azul))
+            Negro when (hayBolitas(Negro))
+            Rojo when (hayBolitas(Rojo))
+            Verde otherwise
+            
+        )
+}

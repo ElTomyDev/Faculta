@@ -1,0 +1,57 @@
+program{
+    return(esDiaDeFinDeSemana_(Viernes))
+}
+
+#Ejercicio 1
+type DiaDeLaSemana is variant{
+    case Lunes {}
+    case Martes {}
+    case Miercoles {}
+    case Jueves {}
+    case Viernes {}
+    case Sabado {}
+    case Domingo {}
+}
+
+#Punto (A)
+function diaSiguiente_(diaActual){
+    return(
+        choose
+            Lunes when (diaActual == Domingo)
+            Martes when (diaActual == Lunes)
+            Miercoles when (diaActual == Martes)
+            Jueves when (diaActual == Miercoles)
+            Viernes when (diaActual == Jueves)
+            Sabado when (diaActual == Viernes)
+            Domingo otherwise
+            
+        )
+}
+
+#Punto (B)
+function diaPrevio_(diaActual){
+    return(
+        choose
+            Lunes when (diaActual == Martes)
+            Martes when (diaActual == Miercoles)
+            Miercoles when (diaActual == Jueves)
+            Jueves when (diaActual == Viernes)
+            Viernes when (diaActual == Sabado)
+            Sabado when (diaActual == Domingo)
+            Domingo otherwise
+    )
+}
+
+#Punto (C)
+function esDiaDeFinDeSemana_(diaActual){
+    return(
+        choose
+            False when (diaActual /= Domingo && diaActual /= Sabado)
+            True otherwise
+        )
+}
+
+
+
+
+

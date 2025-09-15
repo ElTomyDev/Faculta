@@ -1,0 +1,156 @@
+program{
+    # Jugador 1
+    carta1 := laCarta_De_(4, Espada)
+    carta2 := laCarta_De_(7, Espada)
+    
+    #Jugador 2
+    carta3 := laCarta_De_(6, Espada)
+    carta4 := laCarta_De_(7, Espada)
+    return (sonMejores_Y_Que_Y_(carta1, carta2, carta3, carta4))
+}
+
+# Ejercicio 3
+type Carta is record{
+    
+    field numero // numero entero
+    field palo // PaloDeCarta
+    
+}
+
+
+type PaloDeCarta is variant{
+    case Espada {}
+    case Basto {}
+    case Oro {}
+    case Copa {}
+}
+
+
+# Punto (A)
+function anchoDeEspadas(){
+    return(
+        Carta(
+            numero <- 1,
+            palo <- Espada
+        )
+    )
+}
+
+# Punto (B)
+function anchoDeBastos(){
+    return(
+        Carta(
+            numero <- 1,
+            palo <- Basto
+        )
+    )
+}
+
+# Punto (C)
+function laCarta_De_(numeroDeCarta, paloDeCarta){
+    return(
+        Carta(
+            numero <- numeroDeCarta,
+            palo <- paloDeCarta
+            )
+        )
+    
+}
+
+# Punto (D)
+function esUnAncho_(miCarta){
+    return(
+        choose
+            True when (numero(miCarta) == 1)
+            False otherwise
+        )
+}
+
+# Punto (E)
+function esFigura_(miCarta){
+    return(
+        choose
+            True when (numero(miCarta) == 10 || numero(miCarta) == 11 || numero(miCarta) == 12)
+            False otherwise
+        )
+    
+}
+
+# Punto (F)
+function esDeOro_(miCarta){
+    return(
+        choose
+            True when (palo(miCarta) == Oro)
+            False otherwise
+        )
+}
+
+# Punto (G)
+function tieneUnNumeroMasGrande_Que_(primeraCarta, segundaCarta){
+    return(
+        choose
+            True when (numero(primeraCarta) > numero(segundaCarta))
+            False otherwise
+        )
+}
+
+# Punto (H)
+function sonDelMismoPalo_Y_(primeraCarta, segundaCarta){
+    
+    return(
+        choose
+            True when (palo(primeraCarta) == palo(segundaCarta))
+            False otherwise
+        )
+    
+}
+
+# Punto (I)
+function valorParaEnvidoDe_(miCarta){
+    return(
+        choose
+            numero(miCarta) when (not esFigura_(miCarta))
+            0 otherwise
+        )
+}
+
+# Punto (J)
+function mayorValorEntre_Y_(carta1, carta2){
+    return(
+        choose
+            carta1 when (numero(carta1) > numero(carta2) || esFigura_(carta2))
+            carta2 otherwise
+           
+        )
+    
+    
+    
+}
+
+# Punto (K)
+function sumaParaElEnvidoCon_Y_(carta1, carta2){
+    return (
+        choose
+            20 + numero(carta1) + numero(carta2) when ((not esFigura_(carta1) && not esFigura_(carta2)) && (palo(carta1) == palo(carta2)))
+            0 otherwise
+        )
+}
+
+# Punto (L)
+function sonMejores_Y_Que_Y_(jugador1Carta1, jugador1Carta2, jugador2Carta1, jugador2Carta2){
+    sumaCartasJugador1 := sumaParaElEnvidoCon_Y_(jugador1Carta1, jugador1Carta2)
+    sumaCartasJugador2 := sumaParaElEnvidoCon_Y_(jugador2Carta1, jugador2Carta2)
+    
+    return(
+        choose
+            True when (sumaCartasJugador1 > sumaCartasJugador2)
+            False otherwise
+        )
+    
+}
+
+
+
+
+
+

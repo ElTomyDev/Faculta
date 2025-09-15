@@ -1,0 +1,87 @@
+program{
+    personaMadre := Persona(
+            dni <- "46265013",
+            domicilio <- "Bolivar. 1002",
+            donante <- True
+        )
+    
+    recienNacido := personaNacidaDe_(personaMadre)
+    
+    return(persona_ConSituacionComoDonanteCambiada(personaMadre))
+}
+
+#Ejercicio 5
+
+# Punto (A)
+type Persona is record{
+    
+    field dni //string
+    field domicilio //string
+    field donante //booleano
+    
+}
+
+# Punto (B)
+function sonConvivientes_Y_(persona1, persona2){
+    return(
+        choose
+            True when (domicilio(persona1) == domicilio(persona2))
+            False otherwise
+    )
+}
+
+# Punto (C)
+function personaNacidaDe_(personaMadre){
+    return(
+        Persona(
+            dni <- sinAsignar(),
+            domicilio <- domicilio(personaMadre),
+            donante <- False
+        )
+    )
+}
+
+# Funciones Punto (C)
+function sinAsignar(){
+    return("")
+}
+
+# Punto (D)
+function persona_RegistradaCon_(dniSinAsignar, dniDeRegistro){
+    return(
+        Persona(
+            dni <- dniDeRegistro,
+            domicilio <- domicilio(dniSinAsignar),
+            donante <- donante(dniSinAsignar)
+        )
+    )
+}
+
+# Punto (E)
+function persona_ConDomicilioNuevoEn_(persona, domicilioNuevo){
+    return(
+        Persona(
+            dni <- dni(persona),
+            domicilio <- domicilioNuevo,
+            donante <- donante(persona)
+            )
+        )
+}
+
+# Punto (F)
+function persona_ConSituacionComoDonanteCambiada(persona){
+    return(
+        Persona(
+            dni <- dni(persona),
+            domicilio <- domicilio(persona),
+            donante <- opuesto(donante(persona))
+            )
+        )
+}
+
+
+
+
+
+
+

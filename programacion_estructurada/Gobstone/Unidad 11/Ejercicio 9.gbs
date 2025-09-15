@@ -1,0 +1,57 @@
+program{
+    listaSingular := [Norte]
+    listaNoSingular := [Azul, Negro, Rojo, Verde]
+    
+    return()
+}
+
+# Ejercicio 9
+
+# Punto (A)
+function singular_(){
+    
+}
+# Punto (B)
+function esSingular_(){
+    
+}
+# Punto (C)
+function conElemento_AlFinalDe_(){
+    
+}
+# Punto (D)
+function conElemento_AlComienzoDe_(){
+    
+}
+# Punto (E)
+function listaConElemento_Repetido_Veces(){
+    
+}
+# Punto (F)
+function listaDel_Al_(){
+    
+}
+# Punto (G)
+function todosLosParesHasta_(unNumero){
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

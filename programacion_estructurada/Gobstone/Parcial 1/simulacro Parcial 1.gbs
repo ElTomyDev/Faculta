@@ -1,0 +1,109 @@
+program {
+    PropagarSeñales()
+    return(cantidadDeClientesEstafadosQueHabrá())
+}
+
+
+
+procedure PropagarSeñalDePotencia_Al_(potencia, direccion){
+    
+    potenciaActual := potencia
+    
+    while(potenciaActual /= 0 &&  puedeMoverYNoHayTorreAl_(direccion)){
+        Mover(direccion)
+        Poner_DeColor_(potenciaActual, colorDeSeñal())
+        potenciaActual := potenciaActual - 1
+    }
+    Mover_VecesAl_(potencia - potenciaActual, opuesto(direccion))
+}
+
+procedure PropagarSeñales(){
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Norte, Este)
+    
+    while(haySiguienteCeldaEnUnRecorridoAl_Y_(Norte, Este)){
+        PropagarSeñalesSiHayTorreAca()
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    }
+}
+
+procedure PropagarSeñalesSiHayTorreAca(){
+    
+    if (hayTorreAca()){
+        PropagarSeñalDeTorre()
+    }
+}
+
+procedure PropagarSeñalDeTorre(){
+    direccionActual := minDir()
+    potenciaDeTorre := nroBolitas(colorDePotencia())
+    
+    while(direccionActual /= maxDir()){
+        PropagarSeñalDePotencia_Al_(potenciaDeTorre, direccionActual)
+        direccionActual := siguiente(direccionActual)
+    }
+    PropagarSeñalDePotencia_Al_(potenciaDeTorre, direccionActual)
+}
+
+function puedeMoverYNoHayTorreAl_(direccion){
+    return(
+        puedeMover(direccion) &&
+        not hayBolitas_Al_(colorDeTorre(), direccion) 
+    
+    )
+}
+
+function cantidadDeClientesEstafadosQueHabrá(){
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Norte, Este)
+    
+    cantidadDeEstafados := 0
+    
+    
+    while(haySiguienteCeldaEnUnRecorridoAl_Y_(Norte, Este)){
+        if (esCienteEstafado()){
+            cantidadDeEstafados := cantidadDeEstafados + 1
+        }
+        
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)
+    }
+    
+    return(cantidadDeEstafados)
+}
+
+function esCienteEstafado(){
+    return(
+        nroBolitas(colorDeSeñal()) < nroBolitas(colorDeCliente())
+        )
+}
+
+########################################
+function colorDeSeñal(){
+    return(Rojo)
+}
+
+function colorDePotencia(){
+    return(Negro)
+}
+
+function colorDeTorre(){
+    return(Azul)
+}
+
+function colorDeCliente(){
+    return(Verde)
+}
+
+function hayTorreAca(){
+    return(hayBolitas(colorDeTorre()))
+}
+
+function hayClienteAca(){
+    return(hayBolitas(colorDeCliente()))
+}
+
+function haySeñanAca(){
+    return(hayBolitas(colorDeSeñal()))
+}
+
+function potenciaDeTorreAca(){
+    return(nroBolitas(colorDePotencia()))
+}

@@ -1,0 +1,179 @@
+program{
+   TomarDineroDePerdedores()
+}
+
+#Ejercicio 4
+
+procedure TomarDineroDePerdedores(){
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Norte,Este)
+    
+    dineroDePerdedores := cantidadDeDineroDeLosPerdedores()
+    
+    while(haySiguienteCeldaEnUnRecorridoAl_Y_(Norte,Este)){
+        SacarDineroAPerdedor()
+        
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)
+    }
+    SacarDineroAPerdedor()
+    
+    Otorgar_DineroAlCruppier(dineroDePerdedores)
+}
+
+procedure SacarDineroAPerdedor(){
+    if (hayJugadorAca() && numeroAca() /= numeroSorteado()){
+        Sacar_DeColor_(dineroAca(), colorDinero())
+    }
+}
+
+#Ejercicio 3
+
+procedure Otorgar_DineroAlCruppier(cantidadDeDinero){
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Norte,Este)
+    
+    while(haySiguienteCeldaEnUnRecorridoAl_Y_(Norte,Este) && not hayCroupierAca()){
+        
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)
+    }
+    Poner_DeColor_(cantidadDeDinero, colorDinero())
+}
+
+#Ejercicio 2
+
+function cantidadDeDineroDeLosPerdedores(){
+    return(nroBolitasTotalDeColor_(colorDinero()) - (cantidadDeDineroDeLosGanadores() + cantidadDeDineroDeElCroupier()))
+}
+
+function cantidadDeDineroDeLosGanadores(){
+    /*
+        prop. representar la cantidad total de dinero que tienen los ganadores
+        prec. Ninguna
+        tipo. Numero
+    
+    */
+    
+    numeroGanador := numeroSorteado()
+    cantidadDeDineroJuntado := 0
+    
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Norte,Este)
+    
+    while(haySiguienteCeldaEnUnRecorridoAl_Y_(Norte,Este)){
+        if(numeroAca() == numeroGanador && not hayCroupierAca()){
+            cantidadDeDineroJuntado := cantidadDeDineroJuntado + dineroAca()
+        }
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)
+    }
+    
+    return(cantidadDeDineroJuntado)
+}
+
+function numeroSorteado(){
+    /*
+        Prop. Respresentar el numero sorteado por el croupier
+        Prec. El cabezal tiene que estar en la misma celda donde esta el croupier
+        Tipo. Numero
+    */
+    
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Norte,Este)
+    
+    while(haySiguienteCeldaEnUnRecorridoAl_Y_(Norte,Este) && not hayCroupierAca()){
+        
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)
+    }
+    
+    return(numeroAca())
+}
+
+function cantidadDeDineroDeElCroupier(){
+    /*
+        Prop. respresenta la cantidad de dinero que tiene el croupier 
+        Prec. el cabezal tiene que estar en la misma celda donde esta el croupier
+        Tipo. numero
+        
+    */
+    
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Norte,Este)
+    
+    while(haySiguienteCeldaEnUnRecorridoAl_Y_(Norte,Este) && not hayCroupierAca()){
+        
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este,Norte)
+    }
+    
+    return(dineroAca())
+}
+
+#Ejercicio 1
+
+function hayActitudSospechosa(){
+    
+    direccionActual := minDir()
+    
+    noEsSospechoso := esPosibleSospechosoHacia_(direccionActual)
+    
+    while(direccionActual /= maxDir() && not noEsSospechoso){
+        esSospechoso := esPosibleSospechosoHacia_(direccionActual)
+        
+        direccionActual := siguiente(direccionActual)
+        
+    }
+    
+    esSospechoso := esPosibleSospechosoHacia_(direccionActual)
+    
+    return(esSospechoso)
+    
+}
+
+function esPosibleSospechosoHacia_(direccion){
+    
+    numeroCroupier := numeroAca()
+    numeroJugador := 0
+    
+    if (hayBolitas_Al_(colorJugador(), direccion)){
+        Mover(direccion)
+        numeroJugador := numeroAca()
+        
+        Mover(opuesto(direccion))
+        
+        numeroCroupier := numeroAca()
+    }
+    
+    
+    return(numeroJugador == numeroCroupier)
+}
+
+#############################################################
+
+function colorJugador(){
+    return(Azul)
+}
+
+function colorNumero(){
+    return(Rojo)
+}
+
+function colorDinero(){
+    return(Verde)
+}
+
+function colorCroupier(){
+    return(Negro)
+}
+
+function hayCroupierAca(){
+    return(hayBolitas(colorCroupier()))
+}
+
+function hayJugadorAca(){
+    return(hayBolitas(colorJugador()))
+}
+
+function dineroAca(){
+    return(nroBolitas(colorDinero()))
+}
+
+function numeroAca(){
+    return(nroBolitas(colorNumero()))
+}
+
+function idDeJugadorAca(){
+    return(nroBolitas(colorJugador()))
+}

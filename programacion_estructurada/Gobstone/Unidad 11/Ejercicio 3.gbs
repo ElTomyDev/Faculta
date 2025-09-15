@@ -1,0 +1,23 @@
+program{
+    
+    return(listaDeCantidadesDeRojasDeLaFila())
+}
+
+# Ejercicio 3
+
+function listaDeCantidadesDeRojasDeLaFila(){
+    IrAPrimeraCeldaEnUnRecorridoAl_Y_(Norte, Este)
+    cantidadDeRojasAca := nroBolitas(Rojo)
+    listaDeCantidadRojas := []
+    
+    while (haySiguienteCeldaEnUnRecorridoAl_Y_(Norte, Este)){
+        listaDeCantidadRojas := listaDeCantidadRojas ++ [cantidadDeRojasAca]
+        IrASiguienteCeldaEnUnRecorridoAl_Y_(Este, Norte)
+        cantidadDeRojasAca := nroBolitas(Rojo)
+    }
+    listaDeCantidadRojas := listaDeCantidadRojas ++ [cantidadDeRojasAca]
+    
+    return(listaDeCantidadRojas)
+}
+
+

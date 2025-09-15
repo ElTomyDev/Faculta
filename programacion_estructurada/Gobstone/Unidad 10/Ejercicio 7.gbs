@@ -1,0 +1,92 @@
+program{
+    #EscribirFechaConDia_Mes_Año_(31, Diciembre, 2004)
+    return(siguiente(Enero))
+}
+
+# Ejercicio 7
+
+type Fechas is record{
+    field dia //Numero
+    field mes //Mes
+    field año //Numero
+}
+
+type Mes is variant{
+    case Enero {}
+    case Febrero {}
+    case Marzo {}
+    case Abril {}
+    case Mayo {}
+    case Junio {}
+    case Julio {}
+    case Agosto {}
+    case Septiembre {}
+    case Octubre {}
+    case Noviembre {}
+    case Diciembre {}
+}
+
+# Punto (B)
+
+# Ejercicio 5 de unidad 2
+procedure RegistrarElDíaDeLaMemoria(){
+    Poner_DeColor_(dia(elDíaDeLaMemoria()), Azul)
+    Mover(Este)
+    Poner_DeColor_(representacionNumericaDelMes_(mes(elDíaDeLaMemoria())), Rojo)
+    Mover(Este)
+    Poner_DeColor_(año(elDíaDeLaMemoria()), Negro)
+}
+
+function elDíaDeLaMemoria(){
+    return(
+        Fechas(
+            dia <- 24,
+            mes <- Marzo,
+            año <- 1976
+        )
+    )
+        
+}
+
+function representacionNumericaDelMes_(mes){
+    return(
+        choose
+            1 when (mes == Enero)
+            2 when (mes == Febrero)
+            3 when (mes == Marzo)
+            4 when (mes == Abril)
+            5 when (mes == Mayo)
+            6 when (mes == Junio)
+            7 when (mes == Julio)
+            8 when (mes == Agosto)
+            9 when (mes == Septiembre)
+            10 when (mes == Octubre)
+            11 when (mes == Noviembre)
+            12 otherwise
+        )
+}
+
+# Ejercicio 12 de Unidad 4
+
+procedure EscribirFechaConDia_Mes_Año_(dia, mes, año){
+    
+    miFecha := registrarFechaConDia_Mes_Año_(dia, mes, año)
+    
+    Poner_DeColor_(dia(miFecha), Azul)
+    Mover(Este)
+    Poner_DeColor_(representacionNumericaDelMes_(mes(miFecha)), Rojo)
+    Mover(Este)
+    Poner_DeColor_(año(miFecha), Negro)
+}
+
+function registrarFechaConDia_Mes_Año_(unDia, unMes, unAño){
+    return(
+        Fechas(
+            dia <- unDia,
+            mes <- unMes,
+            año <- unAño
+            )
+        )
+}
+
+

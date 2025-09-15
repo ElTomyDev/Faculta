@@ -1,0 +1,111 @@
+una empresa encargada del soporte tecnico en un edificio de oficinas necesita hacer un programa para que un robot limpie todas las maquinas infectadas de diferentes tipos de virus informaticos.
+se le contata a usted para realizar el mencionado programa en gobstones con la siguiente representacion:
+
+- El hall del edificio se representa en la celda de la esquina Sur-Oeste.
+- El hall de cada piso se representa en la celda del borde oeste del piso en cuestion, donde los pisos son
+  representados en una fila, desde la fila siguiente a la mas al Sur hacia el Norte, tantos pisos como se indique en el hall del edificio.
+- Cada piso tiene una cantidad distinta de maquinas, y la cantidad se indicara en el hall del piso.
+- Los vitus se representan con bolitas rojas. Hay virus que se representan con 1 bolita roja, otros con 2 bolitas rojas, otros con 3, 4, 5 y hasta 6 bolitas rojas dependiendo del tipo de vitus.
+- Una indicacion de que la maquina de la celda actual no tiene virus (Marca de OK)se representa con una bolita verde.
+
+El objetivo es definir y probar el procedimiento RepararTodasLasMaquinasDeEdificio() que limpia de virus toda las maquinas del edificio, partiendo del hall.
+
+Funciones:
+	cantidadDePisos
+	cantidadDeMaquinasEnElPiso
+
+procedure RepararTodasLasMaquinasDeEdificio(){
+	/*
+	Proposito:
+		Repara todas las maquinas del edificio partiendo del hall.
+	Precondicion:
+		Ninguna.
+	*/
+	IrAPrimeraCeldaEnUnRecorridoAl_Y_(Este, Norte)
+	pisosSinRevisar := cantidadDePisos()
+	while(pisosSinRevisar /= 0){
+		IrAlSiguientePiso()
+		RepararTodasLasMaquinasDelPisoActual()
+		pisosSinRevisar := pisosSinRevisar - 1
+	}
+	IrAlBorde(Sur)
+}
+
+procedure RepararTodasLasMaquinasDelPisoActualSiCorresponde(){
+	/*
+	Proposito:
+		Repara todas las maquinas que hay en el piso actual si hace falta.
+	Precondicion:
+		Ninguna.
+	*/
+	cantidadMaquinas := cantidadDeMaquinasDeEdificio()
+	repeat(cantidadDeMaquinasDeEdificio()){
+		IrALaSiguienteMaquina()
+		RepararMaquinaDeVirusSiNecesita()
+	}
+	Mover_VecesAl_(cantidadMaquinas, Oeste)
+}
+
+procedure RepararMaquinaDeVirusSiNecesita(){
+	/*
+	Proposito:
+		Repara la maquina que se encuantra en la celda actual si es que hace falta.
+	Precondicion:
+		Ninguna.
+	*/
+	if (esMaquinaConVirus()){
+		RepararMaquinaAca()
+	}
+}
+
+procedure RepararMaquinaAca(){
+	/*
+	Proposito:
+		Repara la maquina con virus de la celda actual.
+	Precondicion:
+		La maquina de la celda actual debe tener al menos 1 virus de tipo 1
+	*/
+	repeat(nroBolitas(virus())){
+		Sacar(virus())
+	}
+}
+
+function virus(){
+	/*
+	Proposito:
+		Indica el color de bolitas que representa un virus
+	Precondicion:
+		Niunguna
+	Tipo:
+		Color.
+	*/
+	return(Rojo)
+}
+
+function esMaquinaConVirus(){
+	/*
+	Proposito:
+		Indica si en la celda actual hay o no un virus.
+	Precondicion:
+		Ninguna.
+	*/
+	return(hayBolitas(virus()))
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

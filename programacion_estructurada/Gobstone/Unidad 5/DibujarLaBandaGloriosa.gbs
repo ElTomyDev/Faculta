@@ -1,0 +1,23 @@
+program {
+    DibujarLaBandaGloriosaDeAncho_(6)
+}
+
+procedure DibujarLaBandaGloriosaDeAncho_(ancho){
+    veces := 0
+    repeat (ancho - 1) {
+        MoverArriba(veces)
+        veces := veces + 1
+        DibujarLinea(4, Norte, Rojo)
+        Mover(Este)
+    }
+    MoverArriba(veces)
+    DibujarLinea(4, Norte, Rojo)
+}
+
+
+
+procedure MoverArriba(veces){
+    repeat (veces){
+        Mover(Norte)
+    }
+}

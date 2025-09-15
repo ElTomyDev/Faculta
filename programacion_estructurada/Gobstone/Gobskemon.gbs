@@ -1,0 +1,323 @@
+program {
+ 
+    entrenador1 := Entrenador(
+        nombre <- "Antoño",
+        gobskemons <- [garmander(), garmander(), garmander()]
+        )
+        
+    return(poderTotalDe_(entrenador1))
+}
+
+type Gobskemon is record{
+    /*
+    Proposito: 
+        Modela un Gobskemon
+    Inv. de repr:
+        El poder siempre es mayor a cero.
+    */     
+    field nombre // String
+    field tipo  // TipoDeGobskemon 
+    field poder // Número
+}
+
+type TipoDeGobskemon  is variant{
+    /*
+    Proposito:
+        Modela los posibles tipos de un Gobskemon.
+    */
+    case Fuego  {}
+    case Agua   {}
+    case Planta {}
+}
+
+type Entrenador is record{
+    /*
+    Proposito:
+        Modela un Gobskemon.
+    */
+    field nombre    // String
+    field gobskemons  // Lista de Gobskemon
+}
+
+type ResultadoDeBatalla is variant{
+    /*
+    Proposito: 
+        Modela el resultado de una batalla entre dos personajes,
+        ya sean Gobskemon, entrenadores u otros.
+    */
+    case GanaPrimero {}
+    case GanaSegundo {}
+    case Empatan {}
+}
+
+#Ejercicio 1
+function tipoTieneVentaja_Contra_(unTipo, otroTipo){
+    /*
+    Proposito:
+        Indica si el primer tipo *unTipo* tiene ventaja contra el segundo tipo *otroTipo*
+    Precondiciones:
+        Los tipos no deben ser iguales.
+    Parametros:
+        *unTipo: TipoDeGobskemon - Indica el primer tipo a comparar.
+        *otroTipo: TipoDeGobskemon - Indica eñ segundo tipo a comparar.
+    Tipo:
+        Booleano.
+    */
+    return(
+            (unTipo == Fuego && otroTipo == Planta) ||
+            (unTipo == Planta && otroTipo == Agua) ||
+            (unTipo == Agua && otroTipo == Fuego)
+        )
+}
+
+#Ejercicio 2
+function tieneVentaja_Contra_(unGobskemon, otroGobskemon){
+    /*
+    Proposito:
+        Indica si el gobskemon *unGobskemon* tiene ventaja contra *otroGobskemon*
+    Precondiciones:
+        Los tipos no deben ser iguales.
+    Parametros:
+        *unGobskemon: Gobskemon - Indica el primer gobskemon.
+        *otroGobskemon: Gobskemon - Indica eñ segundo gobskemon.
+    Tipo:
+        Booleano.
+    */
+    return(
+        tipoTieneVentaja_Contra_(tipo(unGobskemon),tipo(otroGobskemon)) ||
+        (poder(unGobskemon) >= poder(otroGobskemon) * 3)
+        )
+}
+
+#Ejercicio 3
+function garmander(){
+    /*
+    Proposito:
+        Describe un Gobskemon de tipo Fuego, con poder 5 y con nombre “Garmander”.
+    Precondiciones:
+        Ninguna.
+    Tipo:
+        Gobskemon
+    */
+    return(
+        Gobskemon(
+            nombre <- "Garmander",
+            tipo <- Fuego,
+            poder <- 5
+            )
+        )
+}
+
+function golbasaur(){
+    /*
+    Proposito:
+        Describe un Gobskemon de tipo Planta, con poder 4 y con nombre “Golbasaur”.
+    Precondiciones:
+        Ninguna.
+    Tipo:
+        Gobskemon
+    */
+    return(
+        Gobskemon(
+            nombre <- "Golbasaur",
+            tipo <- Planta,
+            poder <- 4
+            )
+        )
+}
+
+function gobartle(){
+    /*
+    Proposito:
+         Describe un Gobskemon de tipo Agua, con poder 6 y con nombre “Gobartle”.
+    Precondiciones:
+        Ninguna.
+    Tipo:
+        Gobskemon
+    */
+    return(
+        Gobskemon(
+            nombre <- "Gobartle",
+            tipo <- Agua,
+            poder <- 6
+            )
+        )
+}
+
+#Ejercicio 4
+function quienGanaBatallaEntre_Y_(primerGobskemon, segundoGobskemon){
+    /*
+    Proposito:
+        Indica el resultado de la batalla entre *primerGobskemon* y *segundoGobskemon*.
+    Precondiciones:
+        Ninguna.
+    Parametros:
+        *primerGobskemon: Gobskemon - Indica el primer gobskemon que va a pelear.
+        *segundoGobskemon: Gobskemon - Indica el segundo gobskemon que va a pelear.
+    Tipo:
+        ResultadoDeBatalla.
+    */
+    return(
+        choose
+            GanaPrimero when (esMasPoderoso_Que_(primerGobskemon, segundoGobskemon))
+            GanaSegundo when (esMasPoderoso_Que_(segundoGobskemon, primerGobskemon))
+            Empatan otherwise
+        )
+}
+
+function esMasPoderoso_Que_(primerGobskemon, segundoGobskemon){
+    /*
+    Proposito:
+        Indica si *primerGobskemon* es mas poderoso que *segundoGobskemo*
+    Precondiciones:
+        Ninguna.
+    Parametros:
+        *primerGobskemon: Gobskemon - Indica el primer gobskemon.
+        *segundoGobskemon: Gobskemon - Indica el segundo gobskemon.
+    Tipo:
+        Booleano.
+    */
+    return(
+        poderTotalDe_Contra_(primerGobskemon, segundoGobskemon) >
+        poderTotalDe_Contra_(segundoGobskemon, primerGobskemon)
+        )
+}
+
+function poderTotalDe_Contra_(primerGobskemon, segundoGobskemon){
+    /*
+    Proposito:
+        Indica si el poder total del *primerGobskemon* cuando pelea contra *segundoGobskemo*
+    Precondiciones:
+        Ninguna.
+    Parametros:
+        *primerGobskemon: Gobskemon - Indica el primer gobskemon.
+        *segundoGobskemon: Gobskemon - Indica el segundo gobskemon.
+    Tipo:
+        Booleano.
+    */
+    return(
+        choose
+            (poder(primerGobskemon) div 2) + poder(primerGobskemon) when (tieneVentaja_Contra_(primerGobskemon, segundoGobskemon))
+            poder(primerGobskemon) otherwise
+        )
+}
+
+#Ejercicio 5
+function nombresDeLosGobskemonDe_(unEntrenador){
+    /*
+    Proposito:
+        Indica los nombres de todos los gobskemones que tiene *unEntrenador*
+    Precondiciones:
+        Ninguna
+    Parametros:
+        *unEntrenador: Entrenador - Indica el entrenador al cual obtener los gobskemones.
+    Tipo:
+        Lista.
+    */
+    gobskemonesDeEntrenador := gobskemons(unEntrenador)
+    nombresDeSusGobskemones := []
+    while (not esVacía(gobskemonesDeEntrenador)){
+        nombresDeSusGobskemones := nombresDeSusGobskemones ++ [nombre(primero(gobskemonesDeEntrenador))]
+        gobskemonesDeEntrenador := resto(gobskemonesDeEntrenador)
+    }
+    return(nombresDeSusGobskemones)
+}
+
+#Ejercicio 6
+function soloLosDeTipo_De_(unTipo, unEntrenador){
+    /*
+    Proposito:
+        Indica una lista con los gobskemones de *unEntrenador* pero solo si es de tipo *unTipo*
+    Precondiciones:
+        Ninguna.
+    Parametros:
+        *unTipo: TipoDeGobskemon - Indica el tipo de gobskemon.
+        *unEntrenador: Entrenador - Indica el entrenador.
+    Tipo:
+        Lista.
+    */
+    listaDeGobskemones := gobskemons(unEntrenador)
+    listaDeGobskemonesSoloDeTalTipo := []
+    while(not esVacía(listaDeGobskemones)){
+        listaDeGobskemonesSoloDeTalTipo := listaDeGobskemonesSoloDeTalTipo ++ listaCon_SiEsDeTipo_VaciaSino(primero(listaDeGobskemones), unTipo)
+        listaDeGobskemones := resto(listaDeGobskemones)
+    }
+    return(listaDeGobskemonesSoloDeTalTipo)
+}
+
+function listaCon_SiEsDeTipo_VaciaSino(unGobskemon, unTipo){
+    /*
+    Proposito:
+        describe una lista con *unGobskemon* si este es del tipo *unTipo*
+    Precondiciones:
+        Ninguna.
+    Parametros:
+        *unGobskemon: Gobskemon - Indica el gobskemon
+        *unTipo: TipoDeGobskemon - Indica el tipo de gobskemon.
+    Tipo:
+        Lista.
+    */
+    return(
+        choose
+            [unGobskemon] when (tipo(unGobskemon) == unTipo)
+            [] otherwise
+        )
+}
+
+# Ejercicio 7
+function esEntrenadorMalo_(unEntrenador){
+    /*
+    Proposito:
+        Indica si el entrenador *unEntrenador* es malo.
+    Observacion:
+        Un entrenador es malo cuando todos sus gobskemones son del mismo tipo.
+    Precondiciones:
+        El entenador debe tener al menos dos gobskemones.
+    Parametros:
+        *unEntrenador: Entrenador - Indica el entrenador.
+    Tipo:
+        Lista (Gobskemones).
+    */
+    
+    return(gobskemons(unEntrenador) == soloLosDeTipo_De_(tipo(primero(gobskemons(unEntrenador))), unEntrenador))
+}
+
+# Ejercicio 8
+function poderTotalDe_(unEntrenador){
+    /*
+    Proposito:
+        Indica el poder total acumulado por todos los gobskemones que tiene *unEntrenador*
+    Precondiciones:
+        El entrenador debe tener al menos un gobskemon.
+    Parametros:
+        *unEntrenador: Entrenador - Indica el entrenador.
+    Tipo:
+        Numero.
+    */
+    listaDeGobskemones := gobskemons(unEntrenador)
+    cantidadDePoderTotal := 0
+    while(not esVacía(listaDeGobskemones)){
+        cantidadDePoderTotal := cantidadDePoderTotal + poder(primero(listaDeGobskemones))
+        listaDeGobskemones := resto(listaDeGobskemones)
+    }
+    return(cantidadDePoderTotal)
+}
+
+# Ejercicio 9
+function resultadoDeUnaBatallaEntre_Y_(){
+    /*
+    Proposito:
+        Indica el poder total acumulado por todos los gobskemones que tiene *unEntrenador*
+    Precondiciones:
+        El entrenador debe tener al menos un gobskemon.
+    Parametros:
+        *unEntrenador: Entrenador - Indica el entrenador.
+    Tipo:
+        Numero.
+    */
+}
+
+
+
+
+

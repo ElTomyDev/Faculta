@@ -1,0 +1,389 @@
+program {
+    /*
+    Prop. : Dibuja La palabra que le indiques en la variable "texto" y con el color que indiques en la variable "color"
+    Prec. : *El tablero siempre es de 19 de ancho y 5 de alto
+            *La palabra tiene un limite de 5 letras
+            *Todas las celdas estan vacias al comienzo
+    */
+    
+    listaDeLetras := ["ñ"]
+    
+    DibujarPalabra(listaDeLetras)
+    
+}
+
+procedure DibujarPalabra(palabra){
+    foreach letra in palabra{
+        ComprobarLetra(letra)
+        DejarEspacio(2,Este)
+    }
+}
+
+procedure ComprobarLetra(letra){
+    pintarDeColor := [Negro,Rojo,Verde,Azul]
+    
+    if (letra == "a"){
+        PintarLetraA()
+    }
+    if (letra == "b"){
+        PintarLetraB()
+    }
+    if (letra == "c"){
+        PintarLetraC()
+    }
+    if (letra == "d"){
+        PintarLetraD()
+    }
+    if (letra == "e"){
+        PintarLetraE()
+    }
+    if (letra == "f"){
+        PintarLetraF()
+    }
+    if (letra == "g"){
+        PintarLetraG()
+    }
+    if (letra == "h"){
+        PintarLetraH()
+    }
+    if (letra == "i"){
+        PintarLetraI()
+    }
+    if (letra == "j"){
+        PintarLetraJ()
+    }
+    if (letra == "k"){
+        PintarLetraK()
+    }
+    if (letra == "l"){
+        PintarLetraL()
+    }
+    if (letra == "m"){
+        PintarLetraM()
+    }
+    if (letra == "n"){
+        PintarLetraN()
+    }
+    if (letra == "ñ"){
+        PintarLetraÑ()
+    }
+    if (letra == "o"){
+        PintarLetraO()
+    }
+    if (letra == "p"){
+        PintarLetraP()
+    }
+    if (letra == "q"){
+        PintarLetraQ()
+    }
+    if (letra == "r"){
+        PintarLetraR()
+    }
+    if (letra == "s"){
+        PintarLetraS()
+    }
+    if (letra == "t"){
+        PintarLetraT()
+    }
+    if (letra == "u"){
+        PintarLetraU()
+    }
+    if (letra == "v"){
+        PintarLetraV()
+    }
+    if (letra == "w"){
+        PintarLetraW()
+    }
+    if (letra == "x"){
+        PintarLetraX()
+    }
+    if (letra == "y"){
+        PintarLetraY()
+    }
+    if (letra == "z"){
+        PintarLetraZ()
+    }
+}
+
+#Procedimientos para pintar las letras
+procedure PintarLetraA(){
+    PintarColumna(3)
+    Mover(Este)
+    PintarDejandoUnEspacio(1,Norte)
+    PintarDejandoUnEspacio(3,Norte)
+    Mover(Este)
+    PintarColumna(3)
+    
+}
+
+procedure PintarLetraB(){
+    PintarColumna(4)
+    Mover(Este)
+    PonerColores()
+    PintarDejandoUnEspacio(2,Norte)
+    PintarDejandoUnEspacio(4,Norte)
+    Mover(Este)
+    PintarColumna(4)
+    SacarColores()
+    DejarEspacio(4,Norte)
+    SacarColores()
+    IrAlBorde(Sur)
+}
+
+procedure PintarLetraC(){
+    PintarColumna(2)
+    Mover(Este)
+    PintarFila(1)
+    Mover(Oeste)
+    PintarDejandoUnEspacio(2,Norte)
+    Mover(Este)
+    PintarDejandoUnEspacio(2,Norte)
+}
+
+procedure PintarLetraD(){
+    PintarColumna(4)
+    Mover(Este)
+    PonerColores()
+    PintarDejandoUnEspacio(4,Norte)
+    Mover(Este)
+    PintarColumna(4)
+    SacarColores()
+    DejarEspacio(4,Norte)
+    SacarColores()
+    IrAlBorde(Sur)
+}
+
+procedure PintarLetraE(){
+    PintarColumna(4)
+    Mover(Este)
+    PonerColores()
+    PintarDejandoUnEspacio(2,Norte)
+    PintarDejandoUnEspacio(4,Norte)
+    Mover(Este)
+    PonerColores()
+    PintarDejandoUnEspacio(2,Norte)
+    PintarDejandoUnEspacio(4,Norte)
+}
+
+procedure PintarLetraF(){
+    PintarColumna(3)
+    Mover(Este)
+    PintarDejandoUnEspacio(1,Norte)
+    PintarDejandoUnEspacio(3,Norte)
+    Mover(Este)
+    PintarDejandoUnEspacio(3,Norte)
+}
+
+procedure PintarLetraG(){
+    PintarColumna(3)
+    Mover(Este)
+    PonerColores()
+    PintarDejandoUnEspacio(3,Norte)
+    DejarEspacio(1,Norte)
+    Poner(Negro)
+    IrAlBorde(Sur)
+    Mover(Este)
+    PintarColumna(1)
+    PintarDejandoUnEspacio(3,Norte)
+}
+
+procedure PintarLetraH(){
+    PintarColumna(2)
+    Mover(Este)
+    PintarDejandoUnEspacio(1,Norte)
+    Mover(Este)
+    PintarColumna(2)
+}
+
+procedure PintarLetraI(){
+    Mover(Este)
+    PintarColumna(1)
+    PintarDejandoUnEspacio(3,Norte)
+    Mover(Este)
+}
+
+procedure PintarLetraJ(){
+    PintarColumna(1)
+    Mover(Este)
+    PintarFila(1)
+    PintarColumna(3)
+}
+
+procedure PintarLetraK(){
+    PintarColumna(4)
+    Mover(Este)
+    PintarDejandoUnEspacio(2,Norte)
+    Mover(Este)
+    PintarColumna(4)
+    DejarEspacio(2,Norte)
+    SacarColores()
+    IrAlBorde(Sur)
+}
+
+procedure PintarLetraL(){
+    PintarColumna(2)
+    Mover(Este)
+    PintarFila(1)
+}
+
+procedure PintarLetraM(){
+    PintarColumna(3)
+    DejarEspacio(3,Norte)
+    Sacar(Negro)
+    IrAlBorde(Sur)
+    Mover(Este)
+    PintarDejandoUnEspacio(2,Norte)
+    Mover(Este)
+    PintarColumna(3)
+    DejarEspacio(3,Norte)
+    Sacar(Azul)
+    IrAlBorde(Sur)
+}
+
+procedure PintarLetraN(){
+    PintarColumna(3)
+    DejarEspacio(3,Norte)
+    Sacar(Negro)
+    IrAlBorde(Sur)
+    Mover(Este)
+    DejarEspacio(2,Norte)
+    PonerColores()
+    Sacar(Negro)
+    Mover(Sur)
+    PonerColores()
+    Sacar(Rojo)
+    IrAlBorde(Sur)
+    Mover(Este)
+    PintarColumna(3)
+}
+
+procedure PintarLetraÑ(){
+    DejarEspacio(4,Norte)
+    Poner(Azul)
+    Poner(Verde)
+    IrAlBorde(Sur)
+    PintarColumna(3)
+    DejarEspacio(3,Norte)
+    Sacar(Negro)
+    IrAlBorde(Sur)
+    
+    Mover(Este)
+    DejarEspacio(4,Norte)
+    Poner(Negro)
+    Poner(Rojo)
+    IrAlBorde(Sur)
+    DejarEspacio(2,Norte)
+    PonerColores()
+    Sacar(Negro)
+    Mover(Sur)
+    PonerColores()
+    Sacar(Rojo)
+    IrAlBorde(Sur)
+    Mover(Este)
+    DejarEspacio(4,Norte)
+    Poner(Azul)
+    Poner(Verde)
+    IrAlBorde(Sur)
+    PintarColumna(3)
+}
+
+procedure PintarLetraO(){
+    PintarColumna(2)
+    Mover(Este)
+    PonerColores()
+    PintarDejandoUnEspacio(2,Norte)
+    Mover(Este)
+    PintarColumna(2)
+}
+
+procedure PintarLetraP(){
+    
+}
+
+procedure PintarLetraQ(){
+    
+}
+
+procedure PintarLetraR(){
+    
+}
+
+procedure PintarLetraS(){
+    
+}
+
+procedure PintarLetraT(){
+    
+}
+
+procedure PintarLetraU(){
+    
+}
+
+procedure PintarLetraV(){
+    
+}
+
+procedure PintarLetraW(){
+    
+}
+
+procedure PintarLetraX(){
+    
+}
+
+procedure PintarLetraY(){
+    
+}
+
+procedure PintarLetraZ(){
+    
+}
+
+#Maneras de pintar el escenario
+procedure PintarColumna(alto){
+    repeat (alto){
+        PonerColores()
+        Mover(Norte)
+    }
+    PonerColores()
+    IrAlBorde(Sur)
+}
+
+procedure PintarFila(largo){
+    repeat (largo){
+        PonerColores()
+        Mover(Este)
+    }
+    PonerColores()
+    IrAlBorde(Sur)
+}
+
+procedure PintarDejandoUnEspacio(espacioDejado,hacia){
+    repeat (espacioDejado){
+        Mover(hacia)
+    }
+    PonerColores()
+    IrAlBorde(Sur)
+}
+
+procedure DejarEspacio(cantidadDeEspacio,hacia){
+    repeat (cantidadDeEspacio){
+        Mover(hacia)
+    }
+}
+
+#Poner o sacar varios colores
+procedure PonerColores(){
+    coloresParaEldibujo := [Azul,Negro,Rojo,Verde]
+    foreach colores in coloresParaEldibujo{
+       Poner(colores)
+    }
+}
+
+procedure SacarColores(){
+    coloresParaEldibujo := [Azul,Negro,Rojo,Verde]
+    foreach colores in coloresParaEldibujo{
+        Sacar(colores)
+    }
+}

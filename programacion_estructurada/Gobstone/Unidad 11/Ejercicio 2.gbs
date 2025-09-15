@@ -1,0 +1,78 @@
+program{
+    anchoEspada := Carta(
+        numero <- 1,
+        palo <- Espada
+        )
+    doceOro := Carta(
+        numero <- 12,
+        palo <- Oro
+        )
+    cuatroBasto := Carta(
+        numero <- 4,
+        palo <- Basto
+        )
+    
+    mazo := [cuatroBasto, doceOro]
+    mano1 := [anchoEspada, doceOro, cuatroBasto]
+    return(laMano_LuegoDeJugarLaSegundaCarta(mano1))
+    
+}
+
+type Carta is record{
+    
+    field numero // numero entero
+    field palo // PaloDeCarta
+    
+}
+
+
+type PaloDeCarta is variant{
+    case Espada {}
+    case Basto {}
+    case Oro {}
+    case Copa {}
+}
+
+# Ejercicio 2
+
+# Punto (F)
+function primerCartaDeLaMano_(unaMano){
+    
+    return(primero(unaMano))
+}
+
+# Punto (G)
+function segundaCartaDeLaMano_(unaMano){
+    
+    return(primero(resto(unaMano)))
+}
+
+# Punto (H)
+function tercerCartaDeLaMano_(unaMano){
+    
+    return(primero(resto(resto(unaMano))))
+}
+
+# Punto (I)
+function laMano_LuegoDeRobarUnaCartaDe_(unaMano, unaCartaDeMazo){
+    
+    return(unaMano ++ [primero(unaCartaDeMazo)])
+}
+
+# Punto (J)
+function laMano_LuegoDeJugarUnaCarta(unaMano){
+
+    
+    return([primero(unaMano)] ++ [primero(resto(unaMano))])
+}
+
+# Punto (K)
+function laMano_LuegoDeJugarLaSegundaCarta(unaMano){
+
+    
+    return([primero(unaMano)] ++ [primero(resto(resto((unaMano))))])
+}
+
+
+
+

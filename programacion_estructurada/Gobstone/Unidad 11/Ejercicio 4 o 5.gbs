@@ -1,0 +1,28 @@
+program{
+    return(coloresEnCeldaActual())
+}
+
+# Ejercicio 4 / 5
+
+function coloresEnCeldaActual(){
+    colorActual := minColor()
+    listaColoresAca := []
+    
+    while (colorActual /= maxColor()){
+        listaColoresAca := listaColoresAca ++ siHayBolitaDevolverLista(colorActual)
+        
+        colorActual := siguiente(colorActual)
+    }
+    listaColoresAca := listaColoresAca ++ siHayBolitaDevolverLista(colorActual)
+    
+    return(listaColoresAca)
+}
+
+function siHayBolitaDevolverLista(color){
+    lista := []
+    if (hayBolitas(color)){
+        lista := [color]
+    }
+    
+    return(lista)
+}

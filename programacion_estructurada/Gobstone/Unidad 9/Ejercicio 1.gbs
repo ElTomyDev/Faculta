@@ -1,0 +1,23 @@
+program{
+    return(hayBolitas_EnCeldaAl_(Azul, Este))
+}
+
+function hayBolitas_EnCeldaAl_(colorDeBolita, direccionAMirar){
+    /*
+    Proposito:
+        Indica la cantidad de bolitas de color *colorDeBolita*  que hay hacia *direccionAMirar*
+    Precondicion:
+        Ninguna.
+    Parametros:
+        - colorDeBolita: Color. Color de la bolita a comprobar.
+        - direccionAMirar: Direccion. Direccion hacia donde puede habar bolita.
+    Tipo:
+        Booleano.
+    */
+    if (not puedeMover(direccionAMirar)){
+        
+        BOOM("No se puede mover hacia esa direccion")
+    }
+    Mover(direccionAMirar)
+    return(hayBolitas(colorDeBolita))
+}

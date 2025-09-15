@@ -1,0 +1,61 @@
+program{
+    celda1 := Celda(
+        cantidadDeAzules <- 3,
+        cantidadDeNegras <- 6,
+        cantidadDeRojas <- 7,
+        cantidadDeVerdes <- 14
+        )
+        
+    celda2 := Celda(
+        cantidadDeAzules <- 3,
+        cantidadDeNegras <- 6,
+        cantidadDeRojas <- 2,
+        cantidadDeVerdes <- 14
+        )
+    
+    return(tieneMismaCantidadDeRojas_Y_(celda1, celda2))
+}
+
+# Ejercicio 4
+
+type Celda is record {
+    /*
+    PROPÓSITO: Modelar una celda del tablero
+    INV.REP.: Los números son todos >=0
+    */
+    field cantidadDeAzules // tipo: Número
+    field cantidadDeNegras // tipo: Número
+    field cantidadDeRojas // tipo: Número
+    field cantidadDeVerdes // tipo: Número
+}
+
+# Punto (A)
+function celdaActual(){
+    return(
+        Celda(
+            cantidadDeAzules <- nroBolitas(Azul),
+            cantidadDeNegras <- nroBolitas(Negro),
+            cantidadDeRojas <- nroBolitas(Rojo),
+            cantidadDeVerdes <- nroBolitas(Verde)
+            )
+        )
+}
+
+# Punto (B)
+procedure EscribirEnCelda_(miCelda){
+    
+    Poner_DeColor_(cantidadDeAzules(miCelda), Azul)
+    Poner_DeColor_(cantidadDeNegras(miCelda), Negro)
+    Poner_DeColor_(cantidadDeRojas(miCelda), Rojo)
+    Poner_DeColor_(cantidadDeVerdes(miCelda), Verde)
+    
+}
+
+# Punto (C)
+function tieneMismaCantidadDeRojas_Y_(celda1, celda2){
+    return(
+        choose
+            True when (cantidadDeRojas(celda1) == cantidadDeRojas(celda2))
+            False otherwise
+        )
+}

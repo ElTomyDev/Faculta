@@ -1,0 +1,25 @@
+program {
+    
+    Mover_SegunColor_(Este, Azul)
+}
+
+procedure Mover_SegunColor_(direccion, color){
+    /*
+    Prop: Mueve el cabezal en la *direccion* dada 
+          tantas celdas como bolitas de *color* dado hay
+          en la celda actual.
+    
+    Para:
+        * direccion : Dir - direccion hacia donde mover el cabezal.
+        * color : Color - Color a elegir para saber cuantas veces moverse
+    
+    Prec:
+        * Tiene que haber por lo menos 1 bolita de *color* en la celda actual
+        * Tiene que definirse la direccion a mover
+    */
+    
+    repeat (nroBolitas(color)){
+        
+        Mover(direccion)
+    }
+}

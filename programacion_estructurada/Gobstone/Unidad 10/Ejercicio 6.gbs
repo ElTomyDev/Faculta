@@ -1,0 +1,158 @@
+program{
+    persona1 := Persona(
+        dni <- "46.265.013",
+        domicilio <- "shumman. 1926",
+        donante <- True
+        )
+    
+    empleado1 := Empleado(
+        dni <- dni(persona1),
+        domicilio <- domicilio(persona1),
+        donante <- donante(persona1),
+            
+        puestoDeEmpresa <- Desarrollador,
+        sueldo <- 150
+        )
+    
+    persona2 := Persona(
+        dni <- "20.998.999",
+        domicilio <- "Bolivar. 2875",
+        donante <- False
+        )
+    
+    empleado2 := Empleado(
+        dni <- dni(persona2),
+        domicilio <- domicilio(persona2),
+        donante <- donante(persona2),
+            
+        puestoDeEmpresa <- LiderDeProyecto,
+        sueldo <- 90000
+        )
+    
+    return(empleado_ConDomicilioActualizadoA_(empleado1,"Caquita. 1111"))
+}
+
+#Ejercicio 6
+
+type Persona is record{
+    
+    field dni //string
+    field domicilio //string
+    field donante //booleano
+    
+}
+
+type Empleado is record{
+    
+    field dni //string
+    field domicilio //String
+    field donante //booleano
+    
+    field puestoDeEmpresa //Puesto
+    field sueldo //numero
+}
+
+type Puesto is variant {
+    /*
+        PROPÓSITO: Modelar los diferentes puestos que hay
+                   dentro de una empresa de software
+    */
+    case GestorDeProyecto {}
+    case LiderDeProyecto {}
+    case Desarrollador {}
+    case Operador {}
+}
+
+# Punto (A)
+function empleado_ConSueldoActualizadoA_(empleado, nuevoSueldo){
+    return(
+        Empleado(
+            dni <- dni(empleado),
+            domicilio <- domicilio(empleado),
+            donante <- donante(empleado),
+            
+            puestoDeEmpresa <- puestoDeEmpresa(empleado),
+            sueldo <- nuevoSueldo
+            )
+        )
+}
+
+# Punto (B)
+function empleado_ConNuevoPuesto_(empleado, nuevoPuesto){
+    return(
+        Empleado(
+            dni <- dni(empleado),
+            domicilio <- domicilio(empleado),
+            donante <- donante(empleado),
+            
+            puestoDeEmpresa <- nuevoPuesto,
+            sueldo <- sueldo(empleado)
+            )
+        )
+}
+
+# Punto (C)
+function categoriaDelPuesto_(puesto){
+    return(
+        choose
+            4 when (puesto == GestorDeProyecto)
+            3 when (puesto == LiderDeProyecto)
+            2 when (puesto == Desarrollador)
+            1 otherwise
+        )
+}
+
+# Punto (D)
+function empleadoConMayorCargoEntre_Y_(empleado1, empleado2){
+    return(
+        choose
+            empleado1 when (categoriaDelPuesto_(puestoDeEmpresa(empleado1)) > categoriaDelPuesto_(puestoDeEmpresa(empleado2)))
+            empleado2 otherwise
+        )
+}
+
+# Punto (E)
+function tienenIgualSueldo_Y_(empleado1, empleado2){
+    return(
+        choose
+            True when (sueldo(empleado1) == sueldo(empleado2))
+            False otherwise
+        )
+}
+
+# Punto (F)
+function empleado_ConAumentoEn_PorBonoDeFinalizacionDeProyecto(empleado, aumento){
+    
+    aumentoResivido := (sueldo(empleado) * aumento) div 100
+    
+    return(
+        Empleado(
+            dni <- dni(empleado),
+            domicilio <- domicilio(empleado),
+            donante <- donante(empleado),
+                
+            puestoDeEmpresa <- puestoDeEmpresa(empleado),
+            sueldo <- sueldo(empleado) + aumentoResivido
+        )
+    )
+}
+
+# Punto (G)
+function empleado_ConDomicilioActualizadoA_(empleado, nuevoDomicilio){
+    return(
+        Empleado(
+            dni <- dni(empleado),
+            domicilio <- nuevoDomicilio,
+            donante <- donante(empleado),
+                
+            puestoDeEmpresa <- puestoDeEmpresa(empleado),
+            sueldo <- sueldo(empleado)
+        )
+    )
+}
+
+
+
+
+
+

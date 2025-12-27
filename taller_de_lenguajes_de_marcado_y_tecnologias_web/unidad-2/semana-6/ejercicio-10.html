@@ -1,0 +1,26 @@
+<!--
+Completa el siguiente código CSS para estilizar los enlaces. Se desea que los enlaces
+tengan un color de texto verde y que no tengan subrayado. Además, cuando el usuario pase
+el mouse sobre un enlace, se debe aplicar un subrayado. ¿Qué error tiene el código css?
+-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 10</title>
+    <style>
+        a {
+            color: #008000; /* el error estaba en que se utilizaba background-color y no color para cambiar el color del TEXTO */
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <a href="#">Enlace</a>
+</body>
+</html>

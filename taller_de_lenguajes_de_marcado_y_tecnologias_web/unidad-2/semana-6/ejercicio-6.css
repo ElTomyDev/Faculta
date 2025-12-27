@@ -1,0 +1,9 @@
+/*
+Desarrolla un código CSS que sirva para cambiar el color de fondo de una página web
+completa a beige, el color del texto a blanco y el tamaño de fuente a 16px
+*/
+* {
+    background-color: beige;
+    color: white;
+    font-size: 16px;
+}
